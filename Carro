@@ -1,0 +1,153 @@
+import java.util.Scanner;
+/*
+ * Instituto Tecnológico de Apizaco 
+ * Carrera: Ing. Informática
+ * Desarrollador: Thomas Rafael Briseño Jiménez 
+ * Fecha: 21/02/2023
+ * Practica: Carro
+ * Objetivo: Describir la clase que se va a programar y poner en práctica las clases y objetos. 
+ * 
+ * */
+public class Carro {
+	private int ruedas;	//Variable para el número de ruedas del auto como entero
+    private int ventana; // Variable para el número de ventas del auto como entero 
+    private String marca; // Variable para la marca del auto 
+    public String nombre; // Variable para el nombre del auto 
+    private double gasolina; // Variable para el consumo de gasolina como dato double
+
+    // Constructor
+    public Carro(int ruedas, int ventana, String marca, String nombre, double gasolina) {
+        this.ruedas = ruedas; // Inicializa el número de ruedas del carro
+        this.ventana = ventana; // Inicializa el número de ventanas del carro
+        this.marca = marca; // Inicializa la marca del carro
+        this.nombre = nombre; // Inicializa el nombre del carro
+        this.gasolina = gasolina; // Inicializa el nivel de gasolina del carro
+    }
+
+    // Métodos de acceso y modificación para ruedas, ventana, marca y gasolina
+    public int getRuedas() {
+        return ruedas; // Devuelve el número de ruedas del carro
+    }
+
+    public void setRuedas(int ruedas) {
+        this.ruedas = ruedas; // Establece el número de ruedas del carro
+    }
+
+    public int getVentana() {
+        return ventana; // Devuelve el número de ventanas del carro
+    }
+
+    public void setVentana(int ventana) {
+        this.ventana = ventana; // Establece el número de ventanas del carro
+    }
+
+    public String getMarca() {
+        return marca; // Devuelve la marca del carro
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca; // Establece la marca del carro
+    }
+
+    public double getGasolina() {
+        return gasolina; // Devuelve el nivel de gasolina del carro
+    }
+
+    public void setGasolina(double gasolina) {
+        this.gasolina = gasolina; // Establece el nivel de gasolina del carro
+    }
+
+    // Método para clasificar datos
+    public void clasificarDatos() {
+    	System.out.println("Datos importantes del carro:"); //Imrprime los valores 
+        System.out.println("Nombre: " + nombre); //	Imprime el nombre del auto
+        System.out.println("Marca: " + marca); // Imprime la marca del auto
+        System.out.println("Número de ruedas: " + ruedas);	// Imprime el número de ruedas que tiene el auto
+        System.out.println("Número de ventanas: " + ventana); //Imprime el número de ventanas que tiene el auto
+        System.out.println("Nivel de gasolina: " + gasolina + " litros"); //Imprime la cantidad de gasolina que tiene en litros
+
+        // Verifica el nivel de gasolina e imprime un mensaje correspondiente
+        if (gasolina < 10) {
+            System.out.println("Recargar gasolina");
+        } else if (gasolina >= 10 && gasolina <= 50) { // Cambio aquí
+            System.out.println("Nivel óptimo de gasolina");
+        } else {
+            System.out.println("Tanque lleno");
+        }
+    }
+public class MainCarro {
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitar datos para el primer auto
+        System.out.println("Ingrese el nombre del auto:"); 
+        String nombre = scanner.nextLine();
+
+        System.out.println("Ingrese la marca del auto:");
+        String marca = scanner.nextLine();
+
+        System.out.println("Ingrese el número de ruedas del auto:");
+        int ruedas = scanner.nextInt();
+
+        System.out.println("Ingrese el número de ventanas del auto:");
+        int ventanas = scanner.nextInt();
+
+        System.out.println("Ingrese el nivel de gasolina del auto (en litros):");
+        double gasolina = scanner.nextDouble();
+
+        // Consumir la nueva línea pendiente después de nextDouble
+        scanner.nextLine();
+
+        // Crear un nuevo objeto Carro con los datos del primer auto
+        Carro miCarro = new Carro(ruedas, ventanas, marca, nombre, gasolina);
+
+        // Mostrar los datos del primer auto
+        miCarro.clasificarDatos();
+
+        // Ciclo para poder permitir agregar más autos
+        while (true) {
+            // Preguntar si el usuario quiere agregar otro auto
+            System.out.println("¿Quiere agregar otro auto? (sí/no)");
+            String respuesta = scanner.nextLine();
+
+            if (respuesta.equalsIgnoreCase("no")) {
+                // Salir del bucle si la respuesta es "no"
+                break;
+            } else if (!respuesta.equalsIgnoreCase("sí")) {
+                // Mostrar mensaje de error si la respuesta no es "sí" ni "no"
+                System.out.println("Por favor utilice las respuestas 'sí' o 'no'.");
+                continue;
+            }
+
+            // Solicitar datos para el siguiente auto
+            System.out.println("Ingrese el nombre del auto:");
+            nombre = scanner.nextLine();
+
+            System.out.println("Ingrese la marca del auto:");
+            marca = scanner.nextLine();
+
+            System.out.println("Ingrese el número de ruedas del auto:");
+            ruedas = scanner.nextInt();
+
+            System.out.println("Ingrese el número de ventanas del auto:");
+            ventanas = scanner.nextInt();
+
+            System.out.println("Ingrese el nivel de gasolina del auto (en litros):");
+            gasolina = scanner.nextDouble();
+
+            // Consumir la nueva línea pendiente después de nextDouble
+            scanner.nextLine();
+
+            // Crear un nuevo objeto Carro con los datos del siguiente auto
+            miCarro = new Carro(ruedas, ventanas, marca, nombre, gasolina);
+
+            // Mostrar los datos del siguiente auto
+            miCarro.clasificarDatos();
+        }
+
+        // Cerrar el scanner al finalizar
+        scanner.close();
+    }
+}
+   
+}
